@@ -9,10 +9,14 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">About</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">e gol</a></li>
 
-                    <li class="nav-item"><a class="nav-link
-                    ${pageContext.request.servletPath eq '/Cars' ? 'active' : ''}" href="${pageContext.request.contextPath}/Cars">Cars</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link ${activePage eq 'Users' ? 'active' : ''}" href="${pageContext.request.contextPath}/Users">Users</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link ${pageContext.request.servletPath eq '/Cars' ? 'active' : ''}" href="${pageContext.request.contextPath}/Cars">Cars</a></li>
 
                     <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
                 </ul>
