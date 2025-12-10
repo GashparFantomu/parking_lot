@@ -1,1 +1,1 @@
-I HATE JAKARTA
+i hate jakarta
