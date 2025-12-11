@@ -1,0 +1,54 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<t:pageTemplate pageTitle="Edit Car">
+    <br>
+    <h1>Edit Car</h1>
+
+    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/EditCar">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="licensePlate">License Plate</label>
+                <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="" value="${car.licensePlate}" required>
+                <div class="invalid-feedback">
+                    Licence Plate is required dude...
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="parkingSpot">Parking Spot</label>
+                <input type="text" class="form-control" id="parkingSpot" name="parkingSpot" placeholder="" value="${car.parkingSpot}" required>
+                <div class="invalid-feedback">
+                    Parking Spot is required, are you going to park in space?
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="ownerId">Owner</label>
+                <select class="form-select" id="ownerId" name="ownerId" required>
+                    <option value="">Choose...</option>
+                    <c:forEach var="user" items="${users}" varStatus="status">
+                        <option value="${user.id}" ${car.ownerName eq user.username ? 'selected' : ''}>${user.username}</option>
+                    </c:forEach>
+                </select>
+                <div class="invalid-feedback">
+                    Owner is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+        <hr class="mb-4">
+        <input type="hidden" name="carId" value="${car.id}"/>
+    </form>
+
+</t:pageTemplate>

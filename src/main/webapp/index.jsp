@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:pageTemplate pageTitle="Parking Lot">
-    <p>     </p>
+    <br>
     <h1>Welcome to the Parking Lot</h1>
     <p>with extra taxes for those who use Jakarta EE and glassfish</p>
 </t:pageTemplate>
