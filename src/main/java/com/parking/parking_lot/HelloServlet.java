@@ -24,5 +24,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void destroy() {
+        //maybe destroy jakarta? seems like a good ideea for me :D
     }
 }

@@ -2,6 +2,7 @@ package com.parking.parking_lot.servlets;
 
 import com.parking.parking_lot.common.CarDto;
 import com.parking.parking_lot.ejb.CarsBean;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -10,6 +11,10 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+@DeclareRoles({"READ_CARS", "WRITE_CARS"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"READ_CARS"}),
+        httpMethodConstraints = {@HttpMethodConstraint(value = "POST", rolesAllowed = {"WRITE_CARS"})})
 
 @WebServlet(name = "Cars", value = "/Cars")
 public class Cars extends HttpServlet {
@@ -22,7 +27,7 @@ public class Cars extends HttpServlet {
         List<CarDto> cars = carsBean.findAllCars();
         request.setAttribute("cars", cars);
 
-        request.setAttribute("numberOfFreeParkingSpots", 999999999);
+        request.setAttribute("numberOfFreeParkingSpots", 214);
         request.getRequestDispatcher("/WEB-INF/pages/cars.jsp").forward(request, response);
     }
 

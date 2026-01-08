@@ -12,7 +12,7 @@
                 <label for="licensePlate">License Plate</label>
                 <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Licence Plate is required.
+                    Licence Plate is required. sorry :/
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                 <label for="parkingSpot">Parking Spot</label>
                 <input type="text" class="form-control" id="parkingSpot" name="parkingSpot" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Parking Spot is required.
+                    Parking Spot is required. manN
                 </div>
             </div>
         </div>

@@ -52,6 +52,7 @@ public class CarsBean {
         car.setOwner(user);
 
         entityManager.persist(car);
+
     }
 
     public CarDto findById(Long id) {

@@ -11,6 +11,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"WRITE_CARS"}))
 @WebServlet(name = "AddCar", value = "/AddCar")
 public class AddCar extends HttpServlet {
     @Inject
@@ -33,7 +35,6 @@ public class AddCar extends HttpServlet {
         Long userId = Long.parseLong(request.getParameter("userId"));
 
         carsBean.createCar(licensePlate, parkingSpot, userId);
-
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
 }
