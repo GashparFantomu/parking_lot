@@ -29,8 +29,8 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="ownerId">Owner</label>
-                <select class="form-select" id="ownerId" name="ownerId" required>
+                <label for="owner_id">Owner</label>
+                <select class="form-select" id="owner_id" name="userId" required>
                     <option value="">Choose...</option>
                     <c:forEach var="user" items="${users}" varStatus="status">
                         <option value="${user.id}" ${car.ownerName eq user.username ? 'selected' : ''}>${user.username}</option>

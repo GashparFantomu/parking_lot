@@ -42,6 +42,6 @@ public class EditCar extends HttpServlet {
 
         carsBean.updateCar(carId, licensePlate, parkingSpot, userId);
 
-        response.sendRedirect(request.getContextPath() + "/cars");
+        response.sendRedirect(request.getContextPath() + "/Cars");
     }
 }
