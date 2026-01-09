@@ -26,8 +26,11 @@ public class Cars extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<CarDto> cars = carsBean.findAllCars();
         request.setAttribute("cars", cars);
+        long totalSpots = 10;
+        long occupiedSpots = carsBean.getCarsCount();
+        long freeSpots = totalSpots - occupiedSpots;
 
-        request.setAttribute("numberOfFreeParkingSpots", 214);
+        request.setAttribute("numberOfFreeParkingSpots", freeSpots);
         request.getRequestDispatcher("/WEB-INF/pages/cars.jsp").forward(request, response);
     }
 

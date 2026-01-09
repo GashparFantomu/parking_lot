@@ -45,6 +45,7 @@ public class UserBean {
     @Inject
     PasswordBean passwordBean;
 
+
     public void createUser(String username, String email, String password, Collection<String> groups) {
         LOG.info("createUser");
         User newUser = new User();
@@ -61,6 +62,25 @@ public class UserBean {
             userGroup.setUsername(username);
             userGroup.setUserGroup(group);
             entityManager.persist(userGroup);
+        }
+    }
+
+    public Collection<String> findUsernamesByUserIds(Collection<Long> userIds) {
+        List<String> usernames =
+                entityManager.createQuery("SELECT u.username FROM User u where u.id IN :userIds", String.class)
+                        .setParameter("userIds", userIds)
+                        .getResultList();
+        return usernames;
+    }
+    public void updateUser(Long userId, String username, String email, String password, Collection<String> groups) {
+        LOG.info("updateUser");
+        User user = entityManager.find(User.class, userId);
+
+        user.setUsername(username);
+        user.setEmail(email);
+
+        if (password != null && !password.trim().isEmpty()) {
+            user.setPassword(passwordBean.convertToSha256(password));
         }
     }
 }

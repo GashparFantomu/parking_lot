@@ -1,7 +1,9 @@
 package com.parking.parking_lot.ejb;
 
 import com.parking.parking_lot.common.CarDto;
+import com.parking.parking_lot.common.CarPhotoDto;
 import com.parking.parking_lot.entities.Car;
+import com.parking.parking_lot.entities.CarPhoto;
 import com.parking.parking_lot.entities.User;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
@@ -39,7 +41,7 @@ public class CarsBean {
             carsDto.add(dto);
         }
         return carsDto;
-    };
+    }
     public void createCar(String licensePlate, String parkingSpot, Long userId) {
         LOG.info("createCar");
 
@@ -98,6 +100,42 @@ public class CarsBean {
         for(Long carId : carIds){
             Car car = entityManager.find(Car.class, carId);
             entityManager.remove(car);
+        }
+    }
+
+    public void addPhotoToCar(Long carId, String filename, String fileType, byte[] fileContent) {
+        LOG.info("addPhotoToCar");
+        CarPhoto photo = new CarPhoto();
+        photo.setFilename(filename);
+        photo.setFileType(fileType);
+        photo.setFileContent(fileContent);
+        Car car = entityManager.find(Car.class, carId);
+        if (car.getPhoto() != null) {
+            entityManager.remove(car.getPhoto());
+        }
+        car.setPhoto(photo);
+        photo.setCar(car);
+        entityManager.persist(photo);
+    }
+    public CarPhotoDto findPhotoByCarId(Integer carId) {
+        List<CarPhoto> photos = entityManager
+                .createQuery("SELECT p FROM CarPhoto p where p.car.id = :id", CarPhoto.class)
+                .setParameter("id", carId)
+                .getResultList();
+        if (photos.isEmpty()) {
+            return null;
+        }
+        CarPhoto photo = photos.get(0); // the first element
+        return new CarPhotoDto(photo.getId(), photo.getFilename(), photo.getFileType(),
+                photo.getFileContent());
+    }
+
+    public long getCarsCount() {
+        LOG.info("getCarsCount");
+        try {
+            return entityManager.createQuery("SELECT COUNT(c) FROM Car c", Long.class).getSingleResult();
+        } catch (Exception ex) {
+            throw new EJBException(ex);
         }
     }
 }
