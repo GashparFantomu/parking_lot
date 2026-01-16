@@ -25,6 +25,7 @@ public class Cars extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<CarDto> cars = carsBean.findAllCars();
+
         request.setAttribute("cars", cars);
         long totalSpots = 10;
         long occupiedSpots = carsBean.getCarsCount();

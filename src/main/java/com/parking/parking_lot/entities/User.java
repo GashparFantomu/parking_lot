@@ -1,6 +1,7 @@
 package com.parking.parking_lot.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,19 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "username")
+    @Size(min = 3, max = 100)
+    @Column(name = "username", unique = true, nullable = false, length = 100)
     private String username;
 
-    @Column(name = "email")
+    @Size(min = 3, max = 100)
+    @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "owner", orphanRemoval = true)
+    private List<Car> cars = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -53,9 +59,6 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @OneToMany(mappedBy = "owner", orphanRemoval = true)
-    private List<Car> cars = new ArrayList<>();
 
     public List<Car> getCars() {
         return cars;

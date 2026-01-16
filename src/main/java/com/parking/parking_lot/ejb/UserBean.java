@@ -72,6 +72,7 @@ public class UserBean {
                         .getResultList();
         return usernames;
     }
+
     public void updateUser(Long userId, String username, String email, String password, Collection<String> groups) {
         LOG.info("updateUser");
         User user = entityManager.find(User.class, userId);

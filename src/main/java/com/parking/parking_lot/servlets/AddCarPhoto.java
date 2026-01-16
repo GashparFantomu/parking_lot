@@ -8,7 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-
+@MultipartConfig
 @WebServlet(name = "AddCarPhoto", value = "/AddCarPhoto")
 public class AddCarPhoto extends HttpServlet {
 
@@ -20,7 +20,7 @@ public class AddCarPhoto extends HttpServlet {
         Long carId = Long.parseLong(request.getParameter("id"));
         CarDto car = carsBean.findById(carId);
         request.setAttribute("car", car);
-        request.getRequestDispatcher("/WEB-INF/pages/cars/addCarPhoto.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/addCarPhoto.jsp").forward(request, response);
     }
 
     @Override

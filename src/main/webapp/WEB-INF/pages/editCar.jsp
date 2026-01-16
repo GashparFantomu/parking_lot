@@ -22,7 +22,7 @@
                 <label for="parkingSpot">Parking Spot</label>
                 <input type="text" class="form-control" id="parkingSpot" name="parkingSpot" placeholder="" value="${car.parkingSpot}" required>
                 <div class="invalid-feedback">
-                    Parking Spot is required, are you going to park in space?
+                    Parking Spot is required, are you going to park in space? xD
                 </div>
             </div>
         </div>

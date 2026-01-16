@@ -38,7 +38,7 @@ public class Users extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!request.isUserInRole("INVOICING")) {
+        if (!request.isUserInRole("WRITE_USERS")) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "You are not authorized to create invoices.");
             return;
         }

@@ -45,15 +45,19 @@ public class CarsBean {
     public void createCar(String licensePlate, String parkingSpot, Long userId) {
         LOG.info("createCar");
 
-        Car car = new Car();
-        car.setLicensePlate(licensePlate);
-        car.setParkingSpot(parkingSpot);
+        try{
+            Car car = new Car();
+            car.setLicensePlate(licensePlate);
+            car.setParkingSpot(parkingSpot);
 
-        User user = entityManager.find(User.class, userId);
-        user.getCars().add(car);
-        car.setOwner(user);
+            User newUser = entityManager.find(User.class, userId);
+            newUser.getCars().add(car);
+            car.setOwner(newUser);
 
-        entityManager.persist(car);
+            entityManager.persist(car);
+        }catch (Exception ex){
+            throw new EJBException(ex);
+        }
 
     }
 
@@ -87,10 +91,10 @@ public class CarsBean {
         if(oldUser.getId().equals(userId)){
             return;
         }
-        oldUser.getCars().remove(car);
 
         User user = entityManager.find(User.class, userId);
         user.getCars().add(car);
+
         car.setOwner(user);
     }
 
@@ -128,6 +132,17 @@ public class CarsBean {
         CarPhoto photo = photos.get(0); // the first element
         return new CarPhotoDto(photo.getId(), photo.getFilename(), photo.getFileType(),
                 photo.getFileContent());
+    }
+    public List<CarDto> findCarsByUsername(String username) {
+        LOG.info("findCarsByUsername");
+        try {
+            TypedQuery<Car> typedQuery = entityManager.createQuery("SELECT c FROM Car c WHERE c.owner.username = :username", Car.class);
+            typedQuery.setParameter("username", username);
+            List<Car> cars = typedQuery.getResultList();
+            return copyCarsToDto(cars);
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
     }
 
     public long getCarsCount() {
