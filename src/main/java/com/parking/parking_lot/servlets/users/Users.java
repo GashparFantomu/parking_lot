@@ -1,4 +1,4 @@
-package com.parking.parking_lot.servlets;
+package com.parking.parking_lot.servlets.users;
 
 import com.parking.parking_lot.common.UserDto;
 import com.parking.parking_lot.ejb.InvoiceBean;
@@ -27,13 +27,15 @@ public class Users extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("activePage", "Users");
         List<UserDto> users = userBean.findAllUsers();
         request.setAttribute("users", users);
         if(!invoiceBean.getUserIds().isEmpty()){
             Collection<String> usernames = userBean.findUsernamesByUserIds(invoiceBean.getUserIds());
             request.setAttribute("usernames", usernames);
         }
-        request.getRequestDispatcher("/WEB-INF/pages/users.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/users/users.jsp").forward(request, response);
+
     }
 
     @Override

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="activePage" value="Users"/>
 <t:pageTemplate pageTitle="Users">
     <br>
     <h1>Users</h1>
@@ -33,4 +32,12 @@
             </c:forEach>
         </div>
     </form>
+    <c:if test="${not empty usernames}">
+        <h2>Invoices</h2>
+        <p>If you use jakarta EE and glassfish you get extra taxes</p>
+        <c:forEach var="usernames" items="${usernames}" varStatus="status">
+            ${status.index + 1}. ${usernames}
+            <br/>
+        </c:forEach>
+    </c:if>
 </t:pageTemplate>

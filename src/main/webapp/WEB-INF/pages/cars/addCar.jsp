@@ -22,7 +22,7 @@
                 <label for="parkingSpot">Parking Spot</label>
                 <input type="text" class="form-control" id="parkingSpot" name="parkingSpot" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Parking Spot is required. manN
+                    Parking Spot is required. don't be a bmw user
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                     </c:forEach>
                 </select>
                 <div class="invalid-feedback">
-                    Owner is required.
+                    Owner is required, the car won't drive itself
                 </div>
             </div>
         </div>

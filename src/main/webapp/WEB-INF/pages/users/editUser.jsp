@@ -14,7 +14,7 @@
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="" value="${user.username}" required>
                 <div class="invalid-feedback">
-                    Username is required.
+                    i think you still want to have a name dude =))
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="" value="${user.email}" required>
                 <div class="invalid-feedback">
-                    Email is required.
+                    nope, gimme yo' email plz
                 </div>
             </div>
         </div>

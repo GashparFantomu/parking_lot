@@ -11,7 +11,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a>
+                        <a class="nav-link ${activePage eq 'About' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/About">About</a>
+                    </li>
                     </li>
                     <li class="nav-item">
                         <c:if test="${pageContext.request.isUserInRole('READ_USERS')}">
@@ -24,8 +25,6 @@
                             <a class="nav-link ${activePage eq 'Cars' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/Cars">Cars</a>
                         </c:if>
                     </li>
-
-                    <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
                 </ul>
                 <ul>
                     <c:choose>

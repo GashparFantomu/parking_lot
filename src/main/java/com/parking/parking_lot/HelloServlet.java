@@ -16,7 +16,7 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        // dude... why...
+        // I'm not going to delete this because I want to make fun of this thing to my friends... first I need to find some friends...
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
@@ -24,6 +24,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void destroy() {
-        //maybe destroy jakarta? seems like a good ideea for me :D
+        //maybe destroy glassfish? seems like a good idea for me :D
     }
 }
